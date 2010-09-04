@@ -1,0 +1,65 @@
+diff -up old/config.def.h new/config.def.h
+--- old/config.def.h	2010-09-03 20:44:47.110003399 -0700
++++ new/config.def.h	2010-09-03 20:48:20.803336736 -0700
+@@ -42,6 +42,7 @@ static const Layout layouts[] = {
+ 	{ "[]=",      tile },    /* first entry is default */
+ 	{ "><>",      NULL },    /* no layout function means floating behavior */
+ 	{ "[M]",      monocle },
++        { .symbol = NULL,   .arrange = NULL    },
+ };
+ 
+ /* key definitions */
+@@ -74,8 +75,9 @@ static Key keys[] = {
+ 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+ 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+ 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+-	{ MODKEY,                       XK_space,  setlayout,      {0} },
+-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
++        { MODKEY,                       XK_space,  nextlayout,     {0} },
++        { MODKEY|ShiftMask,             XK_space,  prevlayout,     {0} },
++	{ MODKEY|ControlMask,           XK_space,  togglefloating, {0} },
+ 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
+ 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
+ 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
+diff -up old/dwm.c new/dwm.c
+--- old/dwm.c	2010-09-03 20:44:47.110003399 -0700
++++ new/dwm.c	2010-09-03 20:45:31.040003399 -0700
+@@ -181,6 +181,8 @@ static void maprequest(XEvent *e);
+ static void monocle(Monitor *m);
+ static void movemouse(const Arg *arg);
+ static Client *nexttiled(Client *c);
++static void nextlayout(const Arg *arg);
++static void prevlayout(const Arg *arg);
+ static Monitor *ptrtomon(int x, int y);
+ static void propertynotify(XEvent *e);
+ static void quit(const Arg *arg);
+@@ -1279,6 +1281,26 @@ nexttiled(Client *c) {
+ 	return c;
+ }
+ 
++void
++nextlayout(const Arg *arg) {
++    Layout *l;
++    for (l=(Layout *)layouts;l != selmon->lt[selmon->sellt];l++);
++    if (l->symbol && (l + 1)->symbol)
++        setlayout(&((Arg) { .v = (l + 1) }));
++    else
++        setlayout(&((Arg) { .v = layouts }));
++}
++
++void
++prevlayout(const Arg *arg) {
++    Layout *l;
++    for (l=(Layout *)layouts;l != selmon->lt[selmon->sellt];l++);
++    if (l != layouts && (l - 1)->symbol)
++        setlayout(&((Arg) { .v = (l - 1) }));
++    else
++        setlayout(&((Arg) { .v = &layouts[LENGTH(layouts) - 2] }));
++}
++
+ Monitor *
+ ptrtomon(int x, int y) {
+ 	Monitor *m;
+Only in old: dwm.c.orig
+Common subdirectories: old/layouts and new/layouts
+Common subdirectories: old/patches and new/patches
