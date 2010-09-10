@@ -40,6 +40,7 @@ static const int layoutaxis[] = {
 #include "layouts/gaplessgrid.c"
 #include "layouts/fibonacci.c"
 #include "layouts/push.c"
+#include <X11/XF86keysym.h>
 
 static const Layout layouts[] = {
     /* symbol     arrange function */
@@ -73,6 +74,9 @@ static const char *quodlibet[]  = { "quodlibet", NULL };
 static const char *displayoff[]  = { "displayoff", NULL };
 static const char *shutdown[]  = { "sudo", "shutdown", "-h", "now", NULL };
 static const char *wicdclient[]  = { "wicd-client", "-n", NULL };
+static const char *raisevolume[]  = { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
+static const char *lowervolume[]  = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
+static const char *mutevolume[]  = { "amixer", "-q", "set", "Master", "toggle", NULL };
 
 static Key keys[] = {
     /* modifier                     key        function        argument */
@@ -87,6 +91,11 @@ static Key keys[] = {
     { MODKEY,                       XK_n,      spawn,          {.v = wicdclient } },
     { MODKEY,                       XK_F12,    spawn,          {.v = displayoff } },
     { MODKEY|ControlMask,           XK_F12,    spawn,          {.v = shutdown } },
+
+    /* media */
+    { 0,           XF86XK_AudioRaiseVolume,    spawn,          {.v = raisevolume } },
+    { 0,           XF86XK_AudioLowerVolume,    spawn,          {.v = lowervolume } },
+    { 0,           XF86XK_AudioMute,           spawn,          {.v = mutevolume  } },
 
     { MODKEY,                       XK_b,      togglebar,      {0} },
     { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
