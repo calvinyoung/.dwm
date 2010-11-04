@@ -65,7 +65,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *dmenu[] = { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG], "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
-static const char *terminal[]  = { "urxvt", NULL };
+static const char *terminal[]  = { "urxvtc", NULL };
 static const char *emacs[]  = { "emacsclient", "-c", NULL };
 static const char *webbrowser[]  = { "chromium", NULL };
 static const char *filemanager[]  = { "thunar", NULL };
