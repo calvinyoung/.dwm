@@ -22,8 +22,8 @@ static const char *tags[] = { "1", "2", "3", "4" };
 static const Rule rules[] = {
     /* class      instance    title       tags mask     isfloating   monitor */
     { "Gimp",     NULL,       NULL,       0,            True,        -1 },
-    { "Firefox",  NULL,       NULL,       1 << 8,       False,       -1 },
     { "Quodlibet", NULL,      NULL,       1 << 1,       False,       -1 },
+    { "trayer",   NULL,       NULL,       1 << 3,       False,       -1 },
 };
 
 /* layout(s) */
@@ -64,7 +64,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *dmenu[] = { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG], "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
-static const char *terminal[]  = { "urxvt", NULL };
+static const char *terminal[]  = { "urxvtc", NULL };
 static const char *emacs[]  = { "emacsclient", "-c", NULL };
 static const char *webbrowser[]  = { "chromium", NULL };
 static const char *filemanager[]  = { "thunar", NULL };
