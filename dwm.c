@@ -181,8 +181,6 @@ static void maprequest(XEvent *e);
 static void monocle(Monitor *m);
 static void movemouse(const Arg *arg);
 static Client *nexttiled(Client *c);
-static void nextlayout(const Arg *arg);
-static void prevlayout(const Arg *arg);
 static Monitor *ptrtomon(int x, int y);
 static void propertynotify(XEvent *e);
 static void quit(const Arg *arg);
@@ -1279,26 +1277,6 @@ Client *
 nexttiled(Client *c) {
 	for(; c && (c->isfloating || !ISVISIBLE(c)); c = c->next);
 	return c;
-}
-
-void
-nextlayout(const Arg *arg) {
-    Layout *l;
-    for (l=(Layout *)layouts;l != selmon->lt[selmon->sellt];l++);
-    if (l->symbol && (l + 1)->symbol)
-        setlayout(&((Arg) { .v = (l + 1) }));
-    else
-        setlayout(&((Arg) { .v = layouts }));
-}
-
-void
-prevlayout(const Arg *arg) {
-    Layout *l;
-    for (l=(Layout *)layouts;l != selmon->lt[selmon->sellt];l++);
-    if (l != layouts && (l - 1)->symbol)
-        setlayout(&((Arg) { .v = (l - 1) }));
-    else
-        setlayout(&((Arg) { .v = &layouts[LENGTH(layouts) - 2] }));
 }
 
 Monitor *
