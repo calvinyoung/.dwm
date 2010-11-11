@@ -9,6 +9,5 @@ ${exec echo -e \\x05}down ${exec echo -e \\x01}${downspeedf eth0}k/s ${exec echo
 ${exec echo -e \\x05}cpu ${exec echo -e \\x01}${cpu cpu1}% / ${cpu cpu2}% | \
 ${exec echo -e \\x05}temp ${exec echo -e \\x01}${platform coretemp.0 temp 1}°C / ${platform coretemp.1 temp 1}°C  | \
 ${exec echo -e \\x05}mem ${exec echo -e \\x01}$memperc% ($mem) | \
-${exec echo -e \\x05}weather ${exec echo -e \\x01}${execpi 1800 ~/bin/conky-forecast --location=94085 --template=~/.dwm/conky-forecast.template} | \
 ${exec echo -e \\x05}updates ${exec echo -e \\x01}${execi 60 ~/bin/pacman-update} | \
 ${exec echo -e \\x05}date ${exec echo -e \\x01}${time %a %b %d %r}
