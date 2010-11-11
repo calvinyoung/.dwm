@@ -49,7 +49,6 @@ static const Layout layouts[] = {
     { "[M]",      monocle },
     { "[G]",      gaplessgrid },
     { "[F]",      NULL },
-    { .symbol = NULL,   .arrange = NULL    },
 };
 
 /* key definitions */
@@ -77,6 +76,10 @@ static const char *wicdclient[]  = { "wicd-client", "-n", NULL };
 static const char *raisevolume[]  = { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
 static const char *lowervolume[]  = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
 static const char *mutevolume[]  = { "amixer", "-q", "set", "Master", "toggle", NULL };
+static const char *mpdplay[]  = { "ncmpcpp", "toggle", NULL };
+static const char *mpdstop[]  = { "ncmpcpp", "stop", NULL };
+static const char *mpdprev[]  = { "ncmpcpp", "prev", NULL };
+static const char *mpdnext[]  = { "ncmpcpp", "next", NULL };
 
 static Key keys[] = {
     /* modifier                     key        function        argument */
@@ -96,6 +99,10 @@ static Key keys[] = {
     { 0,           XF86XK_AudioRaiseVolume,    spawn,          {.v = raisevolume } },
     { 0,           XF86XK_AudioLowerVolume,    spawn,          {.v = lowervolume } },
     { 0,           XF86XK_AudioMute,           spawn,          {.v = mutevolume  } },
+    { 0,           XF86XK_AudioPlay,           spawn,          {.v = mpdplay  } },
+    { 0,           XF86XK_AudioStop,           spawn,          {.v = mpdstop  } },
+    { 0,           XF86XK_AudioPrev,           spawn,          {.v = mpdprev  } },
+    { 0,           XF86XK_AudioNext,           spawn,          {.v = mpdnext  } },
 
     { MODKEY,                       XK_b,      togglebar,      {0} },
     { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -114,8 +121,7 @@ static Key keys[] = {
     { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
     { MODKEY,                       XK_g,      setlayout,      {.v = &layouts[3]} },
     { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[4]} },
-    { MODKEY,                       XK_space,  nextlayout,      {0} },
-    { MODKEY|ShiftMask,             XK_space,  prevlayout,      {0} },
+    { MODKEY,                       XK_space,  setlayout,      {0} },
     { MODKEY|ControlMask,           XK_space,  togglefloating, {0} },
     { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
     { MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
