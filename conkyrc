@@ -5,9 +5,8 @@ total_run_times 0
 use_spacer none
 
 TEXT
-${exec echo -e \\x05}down ${exec echo -e \\x01}${downspeedf eth0}k/s ${exec echo -e \\x05}up ${exec echo -e \\x01}${upspeedf eth0}k/s | \
-${exec echo -e \\x05}cpu ${exec echo -e \\x01}${cpu cpu1}% / ${cpu cpu2}% | \
-${exec echo -e \\x05}temp ${exec echo -e \\x01}${platform coretemp.0 temp 1}°C / ${platform coretemp.1 temp 1}°C  | \
-${exec echo -e \\x05}mem ${exec echo -e \\x01}$memperc% ($mem) | \
-${exec echo -e \\x05}updates ${exec echo -e \\x01}${execi 60 ~/bin/pacman-update} | \
-${exec echo -e \\x05}date ${exec echo -e \\x01}${time %a %b %d %r}
+${exec echoe \\x05}down ${exec echoe \\x01}${downspeedf eth0}k/s ${exec echoe \\x05}up ${exec echoe \\x01}${upspeedf eth0}k/s |\
+${exec echoe \\x05}cpu ${exec echoe \\x01}${cpu cpu1}% / ${cpu cpu2}% |\
+${exec echoe \\x05}temp ${exec echoe \\x01}${platform coretemp.0 temp 1}${exec echoe \\xb0}C / ${platform coretemp.1 temp 1}${exec echoe \\xb0}C |\
+${exec echoe \\x05}mem ${exec echoe \\x01}$memperc% ($mem) |\
+${exec echoe \\x05}date ${exec echoe \\x01}${time %a %b %d %r}

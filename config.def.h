@@ -30,7 +30,7 @@ static const Rule rules[] = {
 static const float mfact      = 0.55; /* factor of master area size [0.05..0.95] */
 static const Bool resizehints = False; /* True means respect size hints in tiled resizals */
 static const int layoutaxis[] = {
-    2,    /* layout axis: 1 = x, 2 = y */
+    1,    /* layout axis: 1 = x, 2 = y */
     1,    /* master axis: 1 = x (l/r), 2 = y (t/b), 3 = z (monocle) */
     2,    /* stack axis:  1 = x (l/r), 2 = y (t/b), 3 = z (monocle) */
 };
@@ -66,7 +66,7 @@ static const Layout layouts[] = {
 static const char *dmenu[] = { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG], "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
 static const char *terminal[]  = { "urxvt", NULL };
 static const char *emacs[]  = { "emacsclient", "-c", NULL };
-static const char *webbrowser[]  = { "chromium", NULL };
+static const char *webbrowser[]  = { "chromium-browser", NULL };
 static const char *filemanager[]  = { "thunar", NULL };
 static const char *alsamixer[]  = { "urxvt", "-e", "alsamixer", NULL };
 static const char *quodlibet[]  = { "quodlibet", NULL };
